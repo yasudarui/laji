@@ -1,0 +1,42 @@
+# Tomcat
+server:
+  port: 9406
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: operation
+  profiles:
+    # 环境配置
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.2.182:8848
+        namespace: release-1
+        group: ${spring.profiles.active}
+        username: nacos
+        password: WJdqQFuP5xCLmvp5
+      config:
+        namespace: release-1
+        group: ${spring.profiles.active}
+        username: nacos
+        password: WJdqQFuP5xCLmvp5
+        # 配置中心地址
+        server-addr: 192.168.2.182:8848
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - data-id: application.${spring.cloud.nacos.config.file-extension}
+            group: ${spring.profiles.active}
+            refresh: true
+          - data-id: data-source.${spring.cloud.nacos.config.file-extension}
+            group: ${spring.profiles.active}
+            refresh: true
+          - data-id: redis.${spring.cloud.nacos.config.file-extension}
+            group: ${spring.profiles.active}
+            refresh: true
+          - data-id: asset-management.${spring.cloud.nacos.config.file-extension}
+            group: ${spring.profiles.active}
+            refresh: true

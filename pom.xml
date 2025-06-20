@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.zdxlz.qBuilder</groupId>
+        <artifactId>microservices</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <artifactId>operation</artifactId>
+    <name>operation</name>
+    <description>operation</description>
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!-- SpringCloud Alibaba Nacos Config -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-common-datascope</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-common-datasource</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-common-log</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-common-mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-common-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-api-asset</artifactId>
+            <version>1.0.0-Beat</version>
+        </dependency>
+          <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-api-knowledge</artifactId>
+            <version>1.0.0-Beat</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-api-operation</artifactId>
+            <version>1.0.0-Beat</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-api-system</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-api-monitor</artifactId>
+            <version>1.0.0-Beat</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-api-event-center</artifactId>
+            <version>1.0.0-Beat</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-api-compliance-check</artifactId>
+            <version>1.0.0-Beat</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-api-cryptography-ledger</artifactId>
+        </dependency>
+
+        <!-- portal Common Swagger -->
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-common-swagger</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 报表统计接口模块 -->
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-api-report</artifactId>
+        </dependency>
+        <!-- 依赖log4j2组件 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-spring-boot</artifactId>
+        </dependency>
+        <!-- 支持slf4j日志api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.opentelemetry.instrumentation</groupId>
+            <artifactId>opentelemetry-log4j-appender-2.17</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zdxlz.qBuilder</groupId>
+            <artifactId>qBuilder-api-situation-awareness</artifactId>
+            <version>1.0.0-Beat</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 避免IDE将 .flattened-pom.xml自动识别为功能模块 -->
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten-clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/../../target/deploy</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
